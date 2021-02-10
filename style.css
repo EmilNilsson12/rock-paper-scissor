@@ -40,6 +40,7 @@ button {
 
 #scoreBoard {
     min-width: 100px;
+    text-align: center;
 }
 
 #scoreBoard div {

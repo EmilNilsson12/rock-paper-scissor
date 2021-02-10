@@ -1,3 +1,4 @@
+const scoreBoardDiv = document.getElementById('scoreBoard');
 let scoreBoard = {
     player: 0,
     computer: 0
@@ -20,7 +21,6 @@ function resetScore() {
 
 function renderGamePieces() {
     const gameBtns = document.getElementById('gameBtns');
-    const scoreBoardDiv = document.getElementById('scoreBoard');
 
     gameBtns.innerHTML = `
         <button class="weapon">Rock</button>
@@ -34,7 +34,7 @@ function renderGamePieces() {
     });
 
     scoreBoardDiv.innerHTML = `
-        <h2>Scores</h2>
+        <h2>Scoreboard</h2>
         <div>
             <span>Player</span>
             <span id="scorePlayer">0</span>
@@ -65,13 +65,13 @@ function playRound(evt) {
 
 
 function announceGameWinner(winner) {
-    scoreBoardDiv.innerHTML = `<h2>Congratulations to ${winner} for winning the game!</h2>`;
+    scoreBoardDiv.innerHTML = `<h2>Congratulations to <em>${winner}</em> for winning the game!</h2>`;
 
     const playAgain = document.createElement('button');
     playAgain.innerText = 'Play again?'
     playAgain.addEventListener('click', startNewGame);
     gameBtns.innerHTML = "";
-    gameBtns.appendChild(playAgain);
+    scoreBoardDiv.appendChild(playAgain);
 }
 
 
