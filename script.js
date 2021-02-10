@@ -21,7 +21,7 @@ function resetScore() {
 function renderGamePieces() {
     const gameBtns = document.getElementById('gameBtns');
     const scoreBoardDiv = document.getElementById('scoreBoard');
-    
+
     gameBtns.innerHTML = `
         <button class="weapon">Rock</button>
         <button class="weapon">Paper</button>
@@ -66,12 +66,62 @@ function playRound(evt) {
 
 function announceGameWinner(winner) {
     scoreBoardDiv.innerHTML = `<h2>Congratulations to ${winner} for winning the game!</h2>`;
-    
+
     const playAgain = document.createElement('button');
     playAgain.innerText = 'Play again?'
     playAgain.addEventListener('click', startNewGame);
     gameBtns.innerHTML = "";
     gameBtns.appendChild(playAgain);
+}
+
+
+function declareRoundWinner(player, computer) {
+    const playerHandDiv = document.getElementById('playerHand');
+    const computerHandDiv = document.getElementById('computerHand');
+
+    playerHandDiv.classList.remove('roundWinner');
+    computerHandDiv.classList.remove('roundWinner');
+    playerHandDiv.classList.remove('roundLoser');
+    computerHandDiv.classList.remove('roundLoser');
+
+    // 1: Rock
+    // 2: Paper
+    // 3: Scissors
+    switch (true) {
+        case (player === computer):
+            // It's a tie
+            break;
+
+        case (player == 1 && computer == 3 || player == 2 && computer == 1 || player == 3 && computer == 2):
+            playerHandDiv.classList.add('roundWinner');
+            computerHandDiv.classList.add('roundLoser');
+            updateScore('player');
+            return 'player'
+            break;
+
+        case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
+            computerHandDiv.classList.add('roundWinner');
+            playerHandDiv.classList.add('roundLoser');
+            updateScore('computer');
+            return 'computer'
+            break;
+
+        default:
+            break;
+    }
+}
+
+
+function updateScore(winner) {
+    const scorePlayer = document.getElementById('scorePlayer');
+    const scoreComputer = document.getElementById('scoreComputer');
+
+    // Update global object
+    scoreBoard[winner]++;
+
+    // Update DOM with new scores
+    scorePlayer.innerText = scoreBoard.player;
+    scoreComputer.innerText = scoreBoard.computer;
 }
 
 
@@ -118,54 +168,4 @@ function getPlayerHand(playerHand) {
         default:
             break;
     }
-}
-
-
-const playerHandDiv = document.getElementById('playerHand');
-const computerHandDiv = document.getElementById('computerHand');
-
-function declareRoundWinner(player, computer) {
-    playerHandDiv.classList.remove('roundWinner');
-    computerHandDiv.classList.remove('roundWinner');
-    playerHandDiv.classList.remove('roundLoser');
-    computerHandDiv.classList.remove('roundLoser');
-
-    // 1: Rock
-    // 2: Paper
-    // 3: Scissors
-    switch (true) {
-        case (player === computer):
-            // It's a tie
-            break;
-
-        case (player == 1 && computer == 3 || player == 2 && computer == 1 || player == 3 && computer == 2):
-            playerHandDiv.classList.add('roundWinner');
-            computerHandDiv.classList.add('roundLoser');
-            updateScore('player');
-            return 'player'
-            break;
-
-        case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
-            computerHandDiv.classList.add('roundWinner');
-            playerHandDiv.classList.add('roundLoser');
-            updateScore('computer');
-            return 'computer'
-            break;
-
-        default:
-            break;
-    }
-}
-
-
-function updateScore(winner) {
-    const scorePlayer = document.getElementById('scorePlayer');
-    const scoreComputer = document.getElementById('scoreComputer');
-
-    // Update global object
-    scoreBoard[winner]++;
-
-    // Update DOM with new scores
-    scorePlayer.innerText = scoreBoard.player;
-    scoreComputer.innerText = scoreBoard.computer;
 }
