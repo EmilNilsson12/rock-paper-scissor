@@ -38,7 +38,6 @@ function playRound(evt) {
 
     // Find player hand by evt.target
     let playerHand = evt.target.innerText;
-    console.log(playerHand);
     playerHand = getPlayerHand(playerHand);
 
     // Compare computerhand with playerhand
@@ -101,7 +100,6 @@ function declareWinner(player, computer) {
     switch (true) {
         case (player === computer):
             // It's a tie
-            console.log("It's a tie");
             break;
 
         case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
