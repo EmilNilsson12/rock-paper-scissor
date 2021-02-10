@@ -1,15 +1,10 @@
-const gameBoard = document.getElementById('gameBoard');
-const startBtn = document.getElementById('startBtn');
-const computerHandDiv = document.getElementById('computerHand');
-const playerHandDiv = document.getElementById('playerHand');
-const gameBtns = document.getElementById('gameBtns');
-
-startBtn.addEventListener('click', startNewGame);
-
 let scoreBoard = {
     player: 0,
     computer: 0
 }
+
+const startBtn = document.getElementById('startBtn');
+startBtn.addEventListener('click', startNewGame);
 
 function startNewGame() {
     startBtn.classList.add('hide');
@@ -17,6 +12,7 @@ function startNewGame() {
 }
 
 
+const gameBtns = document.getElementById('gameBtns');
 
 function renderGamePieces() {
     const gameField = `
@@ -28,9 +24,10 @@ function renderGamePieces() {
     gameBtns.innerHTML = gameField;
     const weapons = document.querySelectorAll('.weapon');
     weapons.forEach(weapon => {
-        weapon.addEventListener('click', playRound)        
+        weapon.addEventListener('click', playRound);
     });
 }
+
 
 function playRound(evt) {
     // Generate computers hand
@@ -43,6 +40,7 @@ function playRound(evt) {
     // Compare computerhand with playerhand
     declareWinner(playerHand, computerHand);
 }
+
 
 function getComputerHand() {
     const computerHand = Math.floor(Math.random() * 3 + 1);
@@ -67,6 +65,7 @@ function getComputerHand() {
     return computerHand
 }
 
+
 function getPlayerHand(playerHand) {
     const playerHandDiv = document.getElementById('playerHand');
 
@@ -88,10 +87,14 @@ function getPlayerHand(playerHand) {
     }
 }
 
+
+const playerHandDiv = document.getElementById('playerHand');
+const computerHandDiv = document.getElementById('computerHand');
+
 function declareWinner(player, computer) {
+    playerHandDiv.classList.remove('roundWinner');
     computerHandDiv.classList.remove('roundWinner');
     playerHandDiv.classList.remove('roundLoser');
-    playerHandDiv.classList.remove('roundWinner');
     computerHandDiv.classList.remove('roundLoser');
 
     // 1: Rock
@@ -102,22 +105,23 @@ function declareWinner(player, computer) {
             // It's a tie
             break;
 
-        case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
-            computerHandDiv.classList.add('roundWinner');
-            playerHandDiv.classList.add('roundLoser');
-            updateScore('computer');
-            break;
-
         case (player == 1 && computer == 3 || player == 2 && computer == 1 || player == 3 && computer == 2):
             playerHandDiv.classList.add('roundWinner');
             computerHandDiv.classList.add('roundLoser');
             updateScore('player');
             break;
 
+        case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
+            computerHandDiv.classList.add('roundWinner');
+            playerHandDiv.classList.add('roundLoser');
+            updateScore('computer');
+            break;
+
         default:
             break;
     }
 }
+
 
 const scorePlayer = document.getElementById('scorePlayer');
 const scoreComputer = document.getElementById('scoreComputer');
