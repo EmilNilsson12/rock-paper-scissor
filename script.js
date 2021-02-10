@@ -94,7 +94,11 @@ function getPlayerHand(playerHand) {
 }
 
 function declareWinner(player, computer) {
-    
+    computerHandDiv.classList.remove('roundWinner');
+    playerHandDiv.classList.remove('roundLoser');
+    playerHandDiv.classList.remove('roundWinner');
+    computerHandDiv.classList.remove('roundLoser');
+
     // 1: Rock
     // 2: Paper
     // 3: Scissors
@@ -105,14 +109,14 @@ function declareWinner(player, computer) {
             break;
 
         case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
-            // Computer wins
-            console.log("Computer wins");
+            computerHandDiv.classList.add('roundWinner');
+            playerHandDiv.classList.add('roundLoser');
             updateScore('computer');
             break;
 
         case (player == 1 && computer == 3 || player == 2 && computer == 1 || player == 3 && computer == 2):
-            // Player wins
-            console.log("Player wins");
+            playerHandDiv.classList.add('roundWinner');
+            computerHandDiv.classList.add('roundLoser');
             updateScore('player');
             break;
 
@@ -132,27 +136,3 @@ function updateScore(winner) {
     scorePlayer.innerText = scoreBoard.player;
     scoreComputer.innerText = scoreBoard.computer;
 }
-
-
-
-// when player clicks on a gamepiece: rock paper or scissors
-// Create random choice for the computer as well
-// Then display both
-// Then compare both and declade a winner
-
-
-
-
-
-/*
-function updateScoreBoard() {
-    for (player of scoreBoard) {
-        console.log(player.name);
-        console.log(player.score);
-        const currentScore = player.score;
-
-
-    }
-}
-*/
-
