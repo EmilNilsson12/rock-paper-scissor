@@ -1,0 +1,46 @@
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+}
+
+#gameBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    height: 400px;
+    width: 200px;
+}
+
+#gameBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scoreBoard {
+    width: 100px;
+}
+
+#scoreBoard div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hand {
+    background-color: blue;
+}
+
+.hide {
+    display: none;
+}
