@@ -50,7 +50,7 @@ function playRound(evt) {
     playerHand = getPlayerHand(playerHand);
 
     // Compare computerhand with playerhand
-    declareWinner(playerHand, computerHand);
+    declareRoundWinner(playerHand, computerHand);
 }
 
 
@@ -103,7 +103,7 @@ function getPlayerHand(playerHand) {
 const playerHandDiv = document.getElementById('playerHand');
 const computerHandDiv = document.getElementById('computerHand');
 
-function declareWinner(player, computer) {
+function declareRoundWinner(player, computer) {
     playerHandDiv.classList.remove('roundWinner');
     computerHandDiv.classList.remove('roundWinner');
     playerHandDiv.classList.remove('roundLoser');
