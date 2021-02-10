@@ -9,13 +9,19 @@ startBtn.addEventListener('click', startNewGame);
 function startNewGame() {
     startBtn.classList.add('hide');
     renderGamePieces();
+    resetScore();
+}
+
+function resetScore() {
+    scoreBoard.player = 0;
+    scoreBoard.computer = 0;
 }
 
 
-const gameBtns = document.getElementById('gameBtns');
-const scoreBoardDiv = document.getElementById('scoreBoard');
-
 function renderGamePieces() {
+    const gameBtns = document.getElementById('gameBtns');
+    const scoreBoardDiv = document.getElementById('scoreBoard');
+    
     gameBtns.innerHTML = `
         <button class="weapon">Rock</button>
         <button class="weapon">Paper</button>
@@ -50,7 +56,22 @@ function playRound(evt) {
     playerHand = getPlayerHand(playerHand);
 
     // Compare computerhand with playerhand
-    declareRoundWinner(playerHand, computerHand);
+    const roundWinner = declareRoundWinner(playerHand, computerHand);
+
+    if (scoreBoard.player == 5 || scoreBoard.computer == 5) {
+        announceGameWinner(roundWinner);
+    }
+}
+
+
+function announceGameWinner(winner) {
+    scoreBoardDiv.innerHTML = `<h2>Congratulations to ${winner} for winning the game!</h2>`;
+    
+    const playAgain = document.createElement('button');
+    playAgain.innerText = 'Play again?'
+    playAgain.addEventListener('click', startNewGame);
+    gameBtns.innerHTML = "";
+    gameBtns.appendChild(playAgain);
 }
 
 
@@ -121,12 +142,14 @@ function declareRoundWinner(player, computer) {
             playerHandDiv.classList.add('roundWinner');
             computerHandDiv.classList.add('roundLoser');
             updateScore('player');
+            return 'player'
             break;
 
         case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
             computerHandDiv.classList.add('roundWinner');
             playerHandDiv.classList.add('roundLoser');
             updateScore('computer');
+            return 'computer'
             break;
 
         default:
