@@ -2,7 +2,7 @@ const gameBoard = document.getElementById('gameBoard');
 const startBtn = document.getElementById('startBtn');
 const computerHandDiv = document.getElementById('computerHand');
 const playerHandDiv = document.getElementById('playerHand');
-const gameField = document.getElementById('gameField');
+const gameBtns = document.getElementById('gameBtns');
 
 startBtn.addEventListener('click', startNewGame);
 
@@ -23,14 +23,14 @@ function startNewGame() {
 
 
 function renderGamePieces() {
-    const gameBtns = `
+    const gameField = `
         <button>Rock</button>
         <button>Paper</button>
         <button>Scissors</button>
     `;
 
-    gameField.innerHTML = gameBtns;
-    gameField.addEventListener('click', playRound)
+    gameBtns.innerHTML = gameField;
+    gameBtns.addEventListener('click', playRound)
 }
 
 function playRound(evt) {

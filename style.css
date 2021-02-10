@@ -25,16 +25,11 @@ main {
 
 }
 
-#gameField {
-    display: flex;
-    border: 1px solid black;
-    width: 100%;
-}
-
 #gameBtns {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 /*
