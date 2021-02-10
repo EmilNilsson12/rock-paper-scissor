@@ -6,16 +6,10 @@ const gameField = document.getElementById('gameField');
 
 startBtn.addEventListener('click', startNewGame);
 
-let scoreBoard = [
-    {
-        name: "player",
-        score: 0
-    },
-    {
-        name: "computer",
-        score: 0
-    }
-]
+let scoreBoard = {
+    player: 0,
+    computer: 0
+}
 
 function startNewGame() {
     startBtn.classList.add('hide');
@@ -56,8 +50,7 @@ function playRound(evt) {
 }
 
 function getComputerHand() {
-    const computerHand = Math.floor(Math.random() * (3) + 1);
-    console.log(computerHand);
+    const computerHand = Math.floor(Math.random() * 3 + 1);
     const computerHandDiv = document.getElementById('computerHand');
 
     switch (computerHand) {
@@ -86,17 +79,14 @@ function getPlayerHand(playerHand) {
         case 'Rock':
             playerHandDiv.innerText = 'Rock';
             return 1
-            break;
 
         case 'Paper':
             playerHandDiv.innerText = 'Paper';
             return 2
-            break;
 
         case 'Scissors':
             playerHandDiv.innerText = 'Scissors';
             return 3
-            break;
 
         default:
             break;
@@ -104,29 +94,43 @@ function getPlayerHand(playerHand) {
 }
 
 function declareWinner(player, computer) {
+    
     // 1: Rock
     // 2: Paper
     // 3: Scissors
-
     switch (true) {
         case (player === computer):
             // It's a tie
             console.log("It's a tie");
             break;
 
-        case (computer > player && player != 1):
+        case (computer == 1 && player == 3 || computer == 2 && player == 1 || computer == 3 && player == 2):
             // Computer wins
             console.log("Computer wins");
+            updateScore('computer');
             break;
 
-        case (player > computer && player != 1):
+        case (player == 1 && computer == 3 || player == 2 && computer == 1 || player == 3 && computer == 2):
             // Player wins
             console.log("Player wins");
+            updateScore('player');
             break;
 
         default:
             break;
     }
+}
+
+const scorePlayer = document.getElementById('scorePlayer');
+const scoreComputer = document.getElementById('scoreComputer');
+
+function updateScore(winner) {
+    // Update global object
+    scoreBoard[winner]++;
+
+    // Update DOM with new scores
+    scorePlayer.innerText = scoreBoard.player;
+    scoreComputer.innerText = scoreBoard.computer;
 }
 
 
