@@ -4,12 +4,12 @@ body {
     justify-content: center;
 }
 
-main {
+main, main > div:first-child{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 500px;
+    min-height: 500px;
 }
 
 #gameBoard {
@@ -22,7 +22,6 @@ main {
     min-height: 400px;
     width: 200px;
     background-color: rgba(0, 0, 255, 0.16);
-
 }
 
 #gameBtns {
@@ -33,7 +32,7 @@ main {
 }
 
 /*
-Overwrite button style so it's not possible to click between them
+Overwrite button style so it's impossible to click between them
 */
 button {
     border-radius: 0;
