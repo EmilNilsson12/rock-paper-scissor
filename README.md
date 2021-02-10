@@ -1,4 +1,4 @@
-# rock-paper-scissor
+# rock-paper-scissors
 
 Project in DOM-manipulation from The Odin Project.
 
