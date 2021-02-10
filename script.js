@@ -13,19 +13,31 @@ function startNewGame() {
 
 
 const gameBtns = document.getElementById('gameBtns');
+const scoreBoardDiv = document.getElementById('scoreBoard');
 
 function renderGamePieces() {
-    const gameField = `
+    gameBtns.innerHTML = `
         <button class="weapon">Rock</button>
         <button class="weapon">Paper</button>
         <button class="weapon">Scissors</button>
     `;
 
-    gameBtns.innerHTML = gameField;
     const weapons = document.querySelectorAll('.weapon');
     weapons.forEach(weapon => {
         weapon.addEventListener('click', playRound);
     });
+
+    scoreBoardDiv.innerHTML = `
+        <h2>Scores</h2>
+        <div>
+            <span>Player</span>
+            <span id="scorePlayer">0</span>
+        </div>
+        <div>
+            <span>Computer</span>
+            <span id="scoreComputer">0</span>
+        </div>
+    `;
 }
 
 
@@ -123,10 +135,10 @@ function declareWinner(player, computer) {
 }
 
 
-const scorePlayer = document.getElementById('scorePlayer');
-const scoreComputer = document.getElementById('scoreComputer');
-
 function updateScore(winner) {
+    const scorePlayer = document.getElementById('scorePlayer');
+    const scoreComputer = document.getElementById('scoreComputer');
+
     // Update global object
     scoreBoard[winner]++;
 
