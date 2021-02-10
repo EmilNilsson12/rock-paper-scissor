@@ -14,23 +14,22 @@ let scoreBoard = {
 function startNewGame() {
     startBtn.classList.add('hide');
     renderGamePieces();
-
-
-
-    //updateScoreBoard();
 }
 
 
 
 function renderGamePieces() {
     const gameField = `
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+        <button class="weapon">Rock</button>
+        <button class="weapon">Paper</button>
+        <button class="weapon">Scissors</button>
     `;
 
     gameBtns.innerHTML = gameField;
-    gameBtns.addEventListener('click', playRound)
+    const weapons = document.querySelectorAll('.weapon');
+    weapons.forEach(weapon => {
+        weapon.addEventListener('click', playRound)        
+    });
 }
 
 function playRound(evt) {
@@ -39,14 +38,11 @@ function playRound(evt) {
 
     // Find player hand by evt.target
     let playerHand = evt.target.innerText;
+    console.log(playerHand);
     playerHand = getPlayerHand(playerHand);
 
     // Compare computerhand with playerhand
     declareWinner(playerHand, computerHand);
-
-    // Display round winner
-
-    // Update score
 }
 
 function getComputerHand() {
