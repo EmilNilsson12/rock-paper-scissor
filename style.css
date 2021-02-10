@@ -19,13 +19,26 @@ main {
     align-items: center;
     border: 1px solid black;
     height: 400px;
+    min-height: 400px;
     width: 200px;
+}
+
+#gameField {
+    display: flex;
+    border: 1px solid black;
 }
 
 #gameBtns {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*
+Overwrite button style so it's not possible to click between them
+*/
+button {
+    border-radius: 0;
 }
 
 #scoreBoard {
@@ -38,7 +51,16 @@ main {
 }
 
 .hand {
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.16);
+    padding: 5px;
+}
+
+.roundWinner {
+    background-color: green;
+}
+
+.roundLoser {
+    background-color: red;
 }
 
 .hide {
